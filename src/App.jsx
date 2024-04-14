@@ -16,13 +16,7 @@ function App() {
 	}
 
 	function handleStatusTodo(todoId){
-		let updateTodo = todo.map((todo)=> {
-			if(todo.id === todoId){
-				todo.status = !todo.status
-			}
-			return todo
-		})
-		setTodo(updateTodo)
+		setTodo(todo.map(task => task.id == todoId ? {...task , status : !task.status} : task))
 	}
 
 	return (
