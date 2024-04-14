@@ -15,6 +15,16 @@ function App() {
 		setTodo(todo.filter((e) => e.id !== todoId));
 	}
 
+	function handleStatusTodo(todoId){
+		let updateTodo = todo.map((todo)=> {
+			if(todo.id === todoId){
+				todo.status = !todo.status
+			}
+			return todo
+		})
+		setTodo(updateTodo)
+	}
+
 	return (
 		<div className="bg-slate-800 w-full h-screen flex flex-col items-center">
 			<div className="bg-sky-400 flex flex-col px-7 py-1 items-center w-2/6  mt-4 rounded">
@@ -38,6 +48,8 @@ function App() {
 						<Task
 							key={todo.id}
 							handleDelete={() => handleDeleteTodo(todo.id)}
+							status={todo.status}
+							handleStatus={()=> handleStatusTodo(todo.id)}
 						>{`${todo.task} | ${todo.id}`}</Task>
 					))}
 				</div>
