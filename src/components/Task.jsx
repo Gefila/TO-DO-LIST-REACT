@@ -7,7 +7,7 @@ export default function Task({
 }) {
 	return (
 		<div className="bg-blue-700 text-white flex justify-between px-4 py-2 border-b-2">
-			<div className="text-lg">{children}</div>
+				<TextTask status={status}>{children}</TextTask>
 			<span className="flex items-center gap-2 ">
 				<CheckBox status={status} fnc={handleStatus}></CheckBox>
 				<span
@@ -40,5 +40,17 @@ function CheckBox({ status, fnc }) {
 				check_box_outline_blank
 			</span>
 		);
+	}
+}
+
+function TextTask({status, children}){
+	if(status){
+		return(
+			<div className="text-lg line-through text-blue-950">{children}</div>
+		)
+	}else{
+		return(
+			<div className="text-lg">{children}</div>
+		)
 	}
 }
