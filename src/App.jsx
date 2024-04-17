@@ -1,20 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Task from "./components/Task";
 
 function App() {
-	const [todo, setTodo] = useState([]);
-
+	const [todo, setTodo] = useState(() => {
+		let local = localStorage.getItem("TODO");
+		return local ? JSON.parse(local) : []
+	});
 	const [task, setTask] = useState("");
-
 	const [edit, setEdit] = useState(false);
 	const [editId, setEditId] = useState(0);
+
+	useEffect(() => {
+		localStorage.setItem("TODO", JSON.stringify(todo));
+	}, [todo]);
 
 	function handleAddTodo() {
 		if (task !== "" && edit === false) {
 			setTodo([...todo, { id: +new Date(), task: task, status: false }]);
 			setTask("");
 		} else {
-			setTodo(task);
 			setEdit(false);
 			setTodo(
 				todo.map((todo) =>
@@ -61,7 +65,7 @@ function App() {
 					onClick={handleAddTodo}
 					name="btn"
 				>
-					{!edit ? "Add Task" : "Delete Task"}
+					{!edit ? "Add Task" : "Edit Task"}
 				</button>
 				<div className="flex flex-col w-full">
 					{todo.map((todo) => (
