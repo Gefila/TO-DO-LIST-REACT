@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import Task from "./components/Task";
+import Form from "./components/Form";
 
 function App() {
 	const [todo, setTodo] = useState(() => {
 		let local = localStorage.getItem("TODO");
-		return local ? JSON.parse(local) : []
+		return local ? JSON.parse(local) : [];
 	});
 	const [task, setTask] = useState("");
 	const [edit, setEdit] = useState(false);
@@ -14,7 +15,8 @@ function App() {
 		localStorage.setItem("TODO", JSON.stringify(todo));
 	}, [todo]);
 
-	function handleAddTodo() {
+	function handleAddTodo(e) {
+		e.preventDefault();
 		if (task !== "" && edit === false) {
 			setTodo([...todo, { id: +new Date(), task: task, status: false }]);
 			setTask("");
@@ -52,21 +54,12 @@ function App() {
 		<div className="bg-slate-800 w-full h-screen flex flex-col items-center">
 			<div className="bg-sky-400 flex flex-col px-7 py-1 items-center w-2/6 min-h-[70%]  mt-4 rounded">
 				<div className="py-4">TO DO LIST</div>
-				<form action=""></form>
-				<input
-					type="text"
-					className="p-2 w-full rounded-t"
-					placeholder="Example : Olahraga"
+				<Form
+					edit={edit}
 					onChange={(e) => setTask(e.target.value)}
-					value={task}
+					handleAddTodo={handleAddTodo}
+					task={task}
 				/>
-				<button
-					className="bg-blue-800 w-full p-2 text-white font-bold"
-					onClick={handleAddTodo}
-					name="btn"
-				>
-					{!edit ? "Add Task" : "Edit Task"}
-				</button>
 				<div className="flex flex-col w-full">
 					{todo.map((todo) => (
 						<Task
