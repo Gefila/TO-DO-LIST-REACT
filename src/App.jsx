@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Task from "./components/Task";
 import Form from "./components/Form";
+import Header from "./components/Header";
 
 function App() {
 	const [todo, setTodo] = useState(() => {
@@ -53,7 +54,7 @@ function App() {
 	return (
 		<div className="bg-slate-800 w-full h-screen flex flex-col items-center">
 			<div className="bg-sky-400 flex flex-col px-7 py-1 items-center w-2/6 min-h-[70%]  mt-4 rounded">
-				<div className="py-4">TO DO LIST</div>
+				<Header></Header>
 				<Form
 					edit={edit}
 					onChange={(e) => setTask(e.target.value)}
