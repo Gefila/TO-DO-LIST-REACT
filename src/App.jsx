@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Task from "./components/Task";
 import Form from "./components/Form";
 import Header from "./components/Header";
@@ -11,6 +11,8 @@ function App() {
 	const [task, setTask] = useState("");
 	const [edit, setEdit] = useState(false);
 	const [editId, setEditId] = useState(0);
+
+	const userRef = useRef(null);
 
 	useEffect(() => {
 		localStorage.setItem("TODO", JSON.stringify(todo));
@@ -45,6 +47,7 @@ function App() {
 	}
 
 	function handleEditTodo(todoId) {
+		userRef.current.focus();
 		setEdit(true);
 		const find = todo.find((todo) => todo.id == todoId);
 		setTask(find.task);
@@ -60,6 +63,7 @@ function App() {
 					onChange={(e) => setTask(e.target.value)}
 					handleAddTodo={handleAddTodo}
 					task={task}
+					userRef={userRef}
 				/>
 				<div className="flex flex-col w-full">
 					{todo.map((todo) => (

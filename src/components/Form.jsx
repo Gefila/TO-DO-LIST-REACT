@@ -1,4 +1,4 @@
-export default function Form({ task, edit, handleAddTodo, onChange }) {
+export default function Form({ task, edit, handleAddTodo, onChange, userRef }) {
 	return (
 		<form className="w-full">
 			<input
@@ -7,6 +7,7 @@ export default function Form({ task, edit, handleAddTodo, onChange }) {
 				placeholder="Example : Olahraga"
 				onChange={onChange}
 				value={task}
+				ref={userRef}
 			/>
 			<button
 				className="bg-blue-800 w-full p-2 text-white font-bold"
