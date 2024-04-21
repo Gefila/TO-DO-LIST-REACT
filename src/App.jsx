@@ -53,7 +53,7 @@ function App() {
 
 	return (
 		<div className="bg-slate-800 w-full h-screen flex flex-col items-center">
-			<div className="bg-sky-400 flex flex-col px-7 py-1 items-center w-2/6 min-h-[70%]  mt-4 rounded">
+			<div className="bg-sky-400 flex flex-col px-7 py-7 items-center w-2/6 min-h-[70%]  mt-4 rounded">
 				<Header></Header>
 				<Form
 					edit={edit}
