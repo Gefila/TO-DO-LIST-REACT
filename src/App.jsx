@@ -23,7 +23,7 @@ function App() {
 		if (task !== "" && edit === false) {
 			setTodo([...todo, { id: +new Date(), task: task, status: false }]);
 			setTask("");
-		} else {
+		} else if (edit === true && task !== ""){
 			setEdit(false);
 			setTodo(
 				todo.map((todo) =>

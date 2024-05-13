@@ -3,7 +3,7 @@ export default function Form({ task, edit, handleAddTodo, onChange, userRef }) {
 		<form className="w-full">
 			<input
 				type="text"
-				className="p-2 w-full rounded-t"
+				className="p-2 w-full"
 				placeholder="Example : Olahraga"
 				onChange={onChange}
 				value={task}
